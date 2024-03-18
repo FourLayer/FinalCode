@@ -10,26 +10,67 @@ import glob
 from xgboost import XGBClassifier
 from sklearn.metrics import accuracy_score, f1_score, confusion_matrix
 
-def add_padding_to_audio(input_folder, output_folder, padding_duration): 
-    # 입력 폴더의 모든 파일 목록 가져오기
-    input_files = os.listdir(input_folder)
+# def add_padding_to_audio(input_folder, output_folder, padding_duration): 
+#     # 입력 폴더의 모든 파일 목록 가져오기
+#     input_files = os.listdir(input_folder)
     
-    # 입력 폴더의 각 파일에 대해 변환 작업 수행
-    for input_file_name in input_files:
-        # 입력 파일의 전체 경로 생성
-        input_file_path = os.path.join(input_folder, input_file_name)
-        audio = AudioSegment.from_file(input_file_path)
-        padding = AudioSegment.silent(duration=padding_duration)
+#     # 입력 폴더의 각 파일에 대해 변환 작업 수행
+#     for input_file_name in input_files:
+#         # 입력 파일의 전체 경로 생성
+#         input_file_path = os.path.join(input_folder, input_file_name)
+#         audio = AudioSegment.from_file(input_file_path)
+#         padding = AudioSegment.silent(duration=padding_duration)
         
-        # 패딩을 음성 파일의 앞에 추가합니다.
-        output_audio = padding + audio
-        output_file_name = input_file_name.split('.')[0] + "_padded." + input_file_name.split('.')[1]
-        output_file_path = os.path.join(output_folder, output_file_name)
-        output_audio.export(output_file_path, format="mp3")
+#         # 패딩을 음성 파일의 앞에 추가합니다.
+#         output_audio = padding + audio
+#         output_file_name = input_file_name.split('.')[0] + "_padded." + input_file_name.split('.')[1]
+#         output_file_path = os.path.join(output_folder, output_file_name)
+#         output_audio.export(output_file_path, format="mp3")
         
-        print(f"{input_file_name}에 1초 패딩 추가 및 저장 완료.")
+#         print(f"{input_file_name}에 1초 패딩 추가 및 저장 완료.")
     
-    print("모든 파일 변환이 완료되었습니다.")
+#     print("모든 파일 변환이 완료되었습니다.")
+
+!git clone https://gitlab.xiph.org/xiph/rnnoise.git
+!pip install soundfile pydub
+!apt install -y ffmpeg
+!sudo apt-get install -y autoconf automake libtool gcc
+
+%cd rnnoise
+!./autogen.sh
+!./configure
+!make
+
+import os
+import soundfile as sf
+import subprocess
+
+def denoise_audio(input_folder, output_folder):
+    # 출력 폴더 생성 (이미 존재하면 무시)
+    os.makedirs(output_folder, exist_ok=True)
+    
+    for filename in os.listdir(input_folder):
+        if filename.endswith(".wav"):
+            input_path = os.path.join(input_folder, filename)
+            output_path = os.path.join(output_folder, filename.replace('.wav', '_denoised.wav'))
+
+            data, samplerate = sf.read(input_path)
+            # 임시 파일 경로 변경
+            temp_input_path = os.path.join(output_folder, 'input_temp.raw')
+            temp_output_path = os.path.join(output_folder, 'output_temp.raw')
+            sf.write(temp_input_path, data, samplerate, subtype='PCM_16')
+
+            subprocess.run(['./examples/.libs/rnnoise_demo', temp_input_path, temp_output_path])
+
+            # 임시 출력 파일에서 읽기
+            data, samplerate = sf.read(temp_output_path, channels=1, samplerate=48000, subtype='PCM_16')
+            sf.write(output_path, data, samplerate)
+
+    print("Denoising completed. The denoised audio files are saved in the folder:", output_folder)
+# 사용 예
+input_folder = '/content/before'
+output_folder = '/content/after'
+denoise_audio(input_folder, output_folder)
 
 def extract_features(input_folder):
     # 입력 폴더의 모든 파일 목록 가져오기
