@@ -194,7 +194,7 @@ def compare_models(input_folder, model_types):
 input_folder = "C:\\Users\\dltos\\Downloads\\padding"
 output_folder = "C:\\Users\\dltos\\Downloads\\padding_with_audio"
 padding_duration = 1000  # 1초를 밀리초로 표시
-model_types = ['CNN', 'CNN+XGBOOST', 'CNN+LSTM', 'CNN+RNN', 'XGBOOST']
+model_types = ['CNN', 'CNN+LSTM', 'CNN+RNN', 'XGBOOST']
 
 if not os.path.exists(output_folder):
     os.makedirs(output_folder)
