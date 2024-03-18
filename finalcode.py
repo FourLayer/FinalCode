@@ -99,34 +99,6 @@ def compare_models(input_folder, model_types):
             # CNN 모델의 정확도를 측정합니다.
             _, accuracy = model.evaluate(X_val, y_val)
             
-        elif model_type == 'CNN+XGBOOST':
-            # CNN과 XGBoost를 결합하는 경우
-            model = Sequential()
-            model.add(Conv1D(64, kernel_size=3, activation='relu', padding='same', input_shape=(X_train.shape[1], 1)))
-            model.add(MaxPooling1D(pool_size=2))
-            model.add(Dropout(0.25))
-            model.add(Flatten())  # 이 층의 출력을 특징 벡터로 사용합니다.
-
-            # CNN 모델 컴파일 (학습은 진행하지 않습니다)
-            model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
-
-            # 특징 추출 함수 정의
-            def extract_features_cnn(model, X):
-                features = model.predict(X)  # 모델을 통해 특징 추출
-                return features
-
-            # 훈련 데이터와 검증 데이터에 대한 특징 추출
-            X_train_features = extract_features_cnn(model, X_train)
-            X_val_features = extract_features_cnn(model, X_val)
-
-            # XGBoost 모델 학습
-            xgb_model = XGBClassifier()
-            xgb_model.fit(X_train_features, y_train)
-
-            # XGBoost 모델을 사용한 예측 및 성능 평가
-            y_pred = xgb_model.predict(X_val_features)
-            accuracy = accuracy_score(y_val, y_pred)
-            
         elif model_type == 'CNN+LSTM':
             # CNN과 LSTM을 결합하는 경우
             # Reshape for LSTM
