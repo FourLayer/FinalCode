@@ -9,7 +9,7 @@ from keras.optimizers import Adam
 import glob
 from xgboost import XGBClassifier
 from sklearn.metrics import accuracy_score, f1_score, confusion_matrix
-import model-comparison #pip install model-comparison
+import Fourmodels #pip install Fourmodels #https://pypi.org/project/Fourmodels/0.1.2/
 
 
 # def add_padding_to_audio(input_folder, output_folder, padding_duration): 
