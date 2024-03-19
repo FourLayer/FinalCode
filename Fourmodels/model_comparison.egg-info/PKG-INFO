@@ -1,0 +1,19 @@
+Metadata-Version: 2.1
+Name: model_comparison
+Version: 0.1.0
+Summary: A library for comparing four machine learning models
+Home-page: https://github.com/FourLayer/FinalCode/fourmodels.py
+Author: FourLayer
+Author-email: fourlayerpbl@gmail.com
+License: MIT
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Requires-Dist: librosa
+Requires-Dist: numpy
+Requires-Dist: keras
+Requires-Dist: scikit-learn
+Requires-Dist: xgboost
+
+This is a library for comparing Four Models
