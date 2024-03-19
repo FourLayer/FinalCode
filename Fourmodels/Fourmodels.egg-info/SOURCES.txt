@@ -1,0 +1,7 @@
+README.md
+setup.py
+Fourmodels.egg-info/PKG-INFO
+Fourmodels.egg-info/SOURCES.txt
+Fourmodels.egg-info/dependency_links.txt
+Fourmodels.egg-info/requires.txt
+Fourmodels.egg-info/top_level.txt

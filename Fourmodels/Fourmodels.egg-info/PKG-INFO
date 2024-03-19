@@ -1,8 +1,8 @@
 Metadata-Version: 2.1
-Name: model_comparison
-Version: 0.1.0
-Summary: A library for comparing four machine learning models
-Home-page: https://github.com/FourLayer/FinalCode/fourmodels.py
+Name: Fourmodels
+Version: 0.1.2
+Summary: A package for comparing four machine learning models
+Home-page: https://github.com/FourLayer/FinalCode/
 Author: FourLayer
 Author-email: fourlayerpbl@gmail.com
 License: MIT
@@ -16,4 +16,6 @@ Requires-Dist: keras
 Requires-Dist: scikit-learn
 Requires-Dist: xgboost
 
-This is a library for comparing Four Models
+This Package is used for comparing Four Models
+
+model_types = ['CNN', 'CNN+LSTM', 'CNN+RNN', 'XGBOOST']

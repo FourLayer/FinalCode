@@ -1,7 +1,0 @@
-README.md
-setup.py
-model_comparison.egg-info/PKG-INFO
-model_comparison.egg-info/SOURCES.txt
-model_comparison.egg-info/dependency_links.txt
-model_comparison.egg-info/requires.txt
-model_comparison.egg-info/top_level.txt

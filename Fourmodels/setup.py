@@ -13,10 +13,10 @@ setup(
     ],
     author='FourLayer',
     author_email='fourlayerpbl@gmail.com',
-    description='A library for comparing four machine learning models',
+    description='A package for comparing four machine learning models',
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
-    url='https://github.com/FourLayer/FinalCode/fourmodels.py',
+    url='https://github.com/FourLayer/FinalCode/blob/3aa58cbcceccf5ca5c46df7d3672d9431d3abc20/Fourmodels/',
     license='MIT',
     classifiers=[
         'License :: OSI Approved :: MIT License',
