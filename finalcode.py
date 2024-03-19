@@ -9,6 +9,8 @@ from keras.optimizers import Adam
 import glob
 from xgboost import XGBClassifier
 from sklearn.metrics import accuracy_score, f1_score, confusion_matrix
+import model-comparison #pip install model-comparison
+
 
 # def add_padding_to_audio(input_folder, output_folder, padding_duration): 
 #     # 입력 폴더의 모든 파일 목록 가져오기
