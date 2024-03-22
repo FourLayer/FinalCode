@@ -1,5 +1,5 @@
 #구글 코랩에서 실행
-#rnnoise이용해서 노이즈 제거하기
+#rnnoise이용해서 노이즈 제거하기.
 
 !git clone https://gitlab.xiph.org/xiph/rnnoise.git
 !pip install soundfile pydub
