@@ -1,8 +1,8 @@
 Metadata-Version: 2.1
 Name: Fourmodels
-Version: 0.1.2
+Version: 0.2.0
 Summary: A package for comparing four machine learning models
-Home-page: https://github.com/FourLayer/FinalCode/
+Home-page: https://github.com/FourLayer/FinalCode/blob/3aa58cbcceccf5ca5c46df7d3672d9431d3abc20/Fourmodels/
 Author: FourLayer
 Author-email: fourlayerpbl@gmail.com
 License: MIT
@@ -18,4 +18,4 @@ Requires-Dist: xgboost
 
 This Package is used for comparing Four Models
 
-model_types = ['CNN', 'CNN+LSTM', 'CNN+RNN', 'XGBOOST']
+model_types = CNN, CNN+LSTM, CNN+RNN, XGBOOST
